@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Kiran Reddy | Frontend Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --accent: #6366f1;
+            --bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-border: #e2e8f0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero { padding: 100px 0; display: flex; align-items: center; gap: 40px; }
+        .hero-content { flex: 1; }
+        .hero-image { flex: 1; text-align: right; }
+        .hero-image img { width: 320px; height: 320px; border-radius: 30px; object-fit: cover; box-shadow: 20px 20px 60px #d1d9e6, -20px -20px 60px #ffffff; }
+        
+        .badge { background: #dbeafe; color: var(--primary); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 1rem; }
+        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -2px; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; }
+        
+        .btn-group { display: flex; gap: 1rem; }
+        .btn { padding: 12px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: var(--transition); display: inline-block; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37,99,235,0.2); }
+        .btn-outline { border: 1px solid var(--card-border); color: var(--text-main); }
+        .btn-outline:hover { background: var(--secondary-bg); }
+
+        /* Skills Section */
+        .section-title { font-size: 2rem; margin-bottom: 3rem; text-align: center; font-weight: 800; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--white); padding: 30px; border-radius: 20px; border: 1px solid var(--card-border); transition: var(--transition); }
+        .skill-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .skill-card h3 { margin-bottom: 1rem; font-size: 1.2rem; }
+        .skill-list { list-style: none; color: var(--text-muted); font-size: 0.95rem; }
+        .skill-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .skill-list li::before { content: "→"; color: var(--primary); font-weight: bold; }
+
+        /* Projects Section */
+        .projects { background: var(--secondary-bg); padding: 100px 0; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: white; border-radius: 24px; overflow: hidden; border: 1px solid var(--card-border); transition: var(--transition); }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .project-img { height: 200px; background: #eef2ff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        .project-info { padding: 25px; }
+        .project-tags { display: flex; gap: 8px; margin-top: 15px; }
+        .tag { font-size: 0.7rem; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-weight: 600; color: var(--text-muted); }
+
+        /* Contact Section */
+        .contact { padding: 100px 0; text-align: center; }
+        .contact-box { max-width: 600px; margin: 0 auto; background: var(--text-main); color: white; padding: 50px; border-radius: 30px; }
+        .contact-box h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact-box p { opacity: 0.8; margin-bottom: 2rem; }
+
+        /* Footer */
+        footer { padding: 40px 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding: 60px 0; }
+            .hero-image img { width: 240px; height: 240px; }
+            h1 { font-size: 2.5rem; }
+            .btn-group { justify-content: center; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="logo">SKR.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="container hero" id="about">
+        <div class="hero-content">
+            <span class="badge">Available for Work</span>
+            <h1>I'm <span style="color:var(--primary)">Sai Kiran Reddy</span>, a Frontend Developer.</h1>
+            <p>B.Tech CSE student at Mohan Babu University. I build high-performance, responsive web applications with a focus on user experience.</p>
+            <div class="btn-group">
+                <a href="mailto:saikiranreddy.jskr@gmail.com" class="btn btn-primary">Get In Touch</a>
+                <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://static.readdy.ai/image/20362fbc1339fa6faf71983e959105f7/87576972ebc8b88dcbac64a1988b4633.webp" alt="Sai Kiran Reddy">
+        </div>
+    </section>
+
+    <section class="container" id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend</h3>
+                <ul class="skill-list">
+                    <li>React.js & Next.js</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>Tailwind CSS</li>
+                    <li>HTML5 & CSS3</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Backend</h3>
+                <ul class="skill-list">
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>MongoDB</li>
+                    <li>RESTful APIs</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Tools</h3>
+                <ul class="skill-list">
+                    <li>Git & GitHub</li>
+                    <li>VS Code</li>
+                    <li>Responsive Design</li>
+                    <li>Agile Methods</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://readdy.ai/api/search-image?query=ecommerce+ui+design&width=400" alt="E-commerce">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:10px;">Full-featured shopping platform with cart and authentication.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://readdy.ai/api/search-image?query=food+app+ui&width=400" alt="Food App">
+                    </div>
+                    <div class="project-info">
+                        <h3>Food Delivery App</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:10px;">Mobile-first application with real-time tracking.</p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://readdy.ai/api/search-image?query=dashboard+ui&width=400" alt="Dashboard">
+                    </div>
+                    <div class="project-info">
+                        <h3>Analytics Dashboard</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:10px;">Interactive business metrics with data visualization.</p>
+                        <div class="project-tags">
+                            <span class="tag">Chart.js</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container contact" id="contact">
+        <div class="contact-box">
+            <h2>Let's work together.</h2>
+            <p>I'm currently looking for new opportunities and internship roles.</p>
+            <a href="mailto:saikiranreddy.jskr@gmail.com" class="btn btn-primary" style="background:white; color:black;">Email Me</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Sai Kiran Reddy. Built with Passion & Code.</p>
+        </div>
+    </footer>
+
+</body>
+  </html>
